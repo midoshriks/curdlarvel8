@@ -18,7 +18,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $countEmployee = Employee::count();
+
+    return view('welcome', compact('countEmployee'));
 });
 
 // Show table data

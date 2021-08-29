@@ -1,4 +1,7 @@
-<!doctype html>
+@extends('layout.admin')
+@section('content')
+
+{{-- <!doctype html>
 <html lang="en">
 
 <head>
@@ -52,134 +55,155 @@
                 </form>
             </div>
         </div>
-    </nav>
+    </nav> --}}
 
-    <h1 class="text-center mb-4">Data page Productsdata</h1>
-    <div class="container">
-
-        <!-- defult message Error -->
-        {{--
-        @if($message = Session::get('success'))
-        <div class="alert alert-success" role="alert">
-            {{$message}}
-    </div>
-    @elseif($message = Session::get('delete'))
-    <div class="alert alert-danger" role="alert">
-        {{$message}}
-    </div>
-    @endif
-    --}}
-
-
-    <a href="/plusproduct" class="btn btn-success mb-5">plues product +</a>
-    <!-- search box -->
-    <form action="/productsdata" method="get">
-        <div class="row g-3 align-items-center">
-
-            <label for="inputPassword6" class="col-xform-label">search employee</label>
-            <div class="col-auto">
-                <input type="search" name="search" class="form-control">
+    <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">Dashboard v2</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Dashboard v2</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
             </div>
+            <!-- /.content-header -->
+            <h1 class="text-center mb-4">Data page Productsdata</h1>
+        <div class="container">
 
-            <div class="col-auto">
-                <span id="passwordHelpInline" class="form-text">
-                    loading...
-                </span>
+                <!-- defult message Error -->
+                {{--
+                @if($message = Session::get('success'))
+                <div class="alert alert-success" role="alert">
+                    {{$message}}
             </div>
-
-            <div class="col-auto">
-                <a href="/exportpdf_product" class="btn btn-info">Export PDF</a>
+            @elseif($message = Session::get('delete'))
+            <div class="alert alert-danger" role="alert">
+                {{$message}}
             </div>
+            @endif
+            --}}
 
-            <div class="col-auto">
-                <a href="/exportexcel_products" class="btn btn-success">Export Excel</a>
-            </div>
 
-            <div class="col-auto">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Import Data
-                </button>
-            </div>
+            <a href="/plusproduct" class="btn btn-success mb-5">plues product +</a>
+            <!-- search box -->
+            <form action="/productsdata" method="get">
+                <div class="row g-3 align-items-center">
 
-            <div class="col-auto">
-            </div>
+                    <label for="inputPassword6" class="col-xform-label">search employee</label>
+                    <div class="col-auto">
+                        <input type="search" name="search" class="form-control">
+                    </div>
 
-        </div>
-    </form>
-    <!-- search box -->
+                    <div class="col-auto">
+                        <span id="passwordHelpInline" class="form-text">
+                            loading...
+                        </span>
+                    </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="col-auto">
+                        <a href="/exportpdf_product" class="btn btn-info">Export PDF</a>
+                    </div>
+
+                    <div class="col-auto">
+                        <a href="/exportexcel_products" class="btn btn-success">Export Excel</a>
+                    </div>
+
+                    <div class="col-auto">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Import Data
+                        </button>
+                    </div>
+
+                    <div class="col-auto">
+                    </div>
+
                 </div>
-                <form action="/importexcel_products" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="from-group">
-                            <input type="file" name="file" require>
+            </form>
+            <!-- search box -->
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
+                        <form action="/importexcel_products" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="modal-body">
+                                <div class="from-group">
+                                    <input type="file" name="file" require>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">import excel</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">import excel</button>
-                    </div>
-                </form>
+                </div>
+            </div>
+
+
+
+
+            <div class="row">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">img</th>
+                            <th scope="col">name</th>
+                            <th scope="col">price</th>
+                            <th scope="col">Tax</th>
+                            <th scope="col">quantity</th>
+                            <th scope="col">create ago</th>
+                            <th scope="col">date</th>
+                            <th scope="col">Add quantity</th>
+                            <th scope="col">action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($productsdata as $K => $row)
+                        <tr>
+                            <th scope="row">{{$K +1 }}</th>
+                            <td>
+                                <img src="{{ asset('fotoproducts/'.$row->foto) }}" alt="img" style="width: 40px;">
+                            </td>
+                            <td>{{$row->name}}</td>
+                            <td>${{$row->price}}</td>
+                            <td>${{$row->tax}}</td>
+                            <td>{{$row->quantity }} <i class="fas fa-sort-amount-up-alt" style="color: blue;"></i></td>
+                            <td>{{$row->created_at->diffForHumans()}}</td>
+                            <td>{{$row->created_at->format('D M Y')}}</td>
+                            <td>
+                                <a href="/addproduct/{{ $row->id }}" class="btn btn-primary">Add quantity +</a>
+                            </td>
+                            <td>
+                                <a href="/editproduct/{{ $row->id }}" class="btn btn-info">Edit</a>
+                                <!-- <a href="" class="btn btn-danger">Delete</a> -->
+                                <a href="#" class="btn btn-danger delete" data-id="{{ $row->id }}" data-name="{{ $row->name }}">Delete</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                {{ $productsdata->links() }}
             </div>
         </div>
     </div>
 
-
-
-
-    <div class="row">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">img</th>
-                    <th scope="col">name</th>
-                    <th scope="col">price</th>
-                    <th scope="col">Tax</th>
-                    <th scope="col">quantity</th>
-                    <th scope="col">create ago</th>
-                    <th scope="col">date</th>
-                    <th scope="col">Add quantity</th>
-                    <th scope="col">action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($productsdata as $K => $row)
-                <tr>
-                    <th scope="row">{{$K +1 }}</th>
-                    <td>
-                        <img src="{{ asset('fotoproducts/'.$row->foto) }}" alt="img" style="width: 40px;">
-                    </td>
-                    <td>{{$row->name}}</td>
-                    <td>${{$row->price}}</td>
-                    <td>${{$row->tax}}</td>
-                    <td>{{$row->quantity }} <i class="fas fa-sort-amount-up-alt" style="color: blue;"></i></td>
-                    <td>{{$row->created_at->diffForHumans()}}</td>
-                    <td>{{$row->created_at->format('D M Y')}}</td>
-                    <td>
-                        <a href="/addproduct/{{ $row->id }}" class="btn btn-primary">Add quantity +</a>
-                    </td>
-                    <td>
-                        <a href="/editproduct/{{ $row->id }}" class="btn btn-info">Edit</a>
-                        <!-- <a href="" class="btn btn-danger">Delete</a> -->
-                        <a href="#" class="btn btn-danger delete" data-id="{{ $row->id }}" data-name="{{ $row->name }}">Delete</a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-        {{ $productsdata->links() }}
-    </div>
-    </div>
+    
 
     <!-- <button class="btn btn-danger">tets</button> -->
 
@@ -254,3 +278,5 @@
 </script>
 
 </html>
+
+@endsection

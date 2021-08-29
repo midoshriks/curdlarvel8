@@ -47,7 +47,17 @@ class EmployeeController extends Controller
 
     public function update(Request $request, $id){
         $data = Employee::find($id);
-        $data->update($request->all());
+
+        if($request->hasFile('foto')){
+            $request->file('foto')->move('fotodatapage/',$request->file('foto')->getClientOriginalName());
+            $data->foto = $request->file('foto')->getClientOriginalName();
+            // $data->update($request->all());
+            $data->update();
+            // var_dump($data->name);
+            // exit;
+        }
+
+        
         return redirect()->route('datapage')->with('success','Data has been Update successfully');
     }
 

@@ -62,7 +62,17 @@ class ProductsController extends Controller
 
     public function updateproduct(Request $request, $id){
         $productsdata = Products::find($id);
-        $productsdata->update($request->all());
+        $productsdata->name = $request->input('name');
+
+        if($request->hasFile('foto')){
+            $request->file('foto')->move('fotoproducts/',$request->file('foto')->getClientOriginalName());
+            $productsdata->foto = $request->file('foto')->getClientOriginalName();
+            $productsdata->save($request->all());
+            // $productsdata->update();
+        }
+        // var_dump($productsdata->foto);
+        // exit;
+        // $productsdata->update($request->all());
         return redirect()->route('productsdata')->with('success','Data has been Update product successfully');
     }
 
