@@ -179,7 +179,7 @@
                         <img src="{{ asset('img_user/'.Auth::user()->img ) }}" class="img-circle elevation-2" style="height: 60px; width:60px;" alt="User Image">
                     </div>
                     <div class="info mt-3">
-                        <a href="/" class="d-block">{{ Auth::user()->name }}</a>
+                        <a href="/profile" class="d-block">{{ Auth::user()->name }}</a>
                     </div>
                 </div>
 

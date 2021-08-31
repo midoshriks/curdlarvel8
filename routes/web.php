@@ -3,6 +3,7 @@
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 use App\Models\Employee;
 use App\Models\Products;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,9 @@ Route::post('/register_user', [LoginController::class, 'register_user'])->name('
 // logout user
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
+// profile user
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+Route::post('/updata_user/{id}', [ProfileController::class, 'updata_user'])->name('updata_user');
 
 
 
