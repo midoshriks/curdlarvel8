@@ -1,3 +1,8 @@
+@extends('layout.admin')
+
+
+@section('content')
+
 <!doctype html>
 <html lang="en">
 
@@ -12,9 +17,12 @@
 </head>
 
 <body>
+
+
+
     <h1 class="text-center mb-4">Plus Data Products</h1>
     <div class="container">
-        <!-- <button type="button" class="btn btn-success mb-5">plus +</button> -->
+         {{-- <button type="button" class="btn btn-success mb-5">plus +</button> --}}
         <div class="row justify-content-center">
             <div class="col-8">
                 <div class="card">

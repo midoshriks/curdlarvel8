@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset('tamplate/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('tamplate/dist/css/adminlte.min.css')}}">
+    @stack('css')
 </head>
 
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -167,18 +168,18 @@
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
                 <img src="{{ asset('tamplate/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">AdminLTE 3</span>
+                <span class="brand-text font-weight-light">AdminLTE #36</span>
             </a>
 
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="user-panel mt-3 mr-0 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="{{ asset('tamplate/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                        <img src="{{ asset('img_user/'.Auth::user()->img ) }}" class="img-circle elevation-2" style="height: 60px; width:60px;" alt="User Image">
                     </div>
-                    <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
+                    <div class="info mt-3">
+                        <a href="/" class="d-block">{{ Auth::user()->name }}</a>
                     </div>
                 </div>
 
@@ -244,6 +245,16 @@
                                 <i class="nav-icon fas fa-chart-pie"></i>
                                 <p>
                                     Data Products
+                                    {{-- <i class="right fas fa-angle-left"></i> --}}
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/logout" class="nav-link">
+                                <i class="nav-icon fas fa-sign-out-alt"></i>
+                                <p>
+                                    Logout
                                     {{-- <i class="right fas fa-angle-left"></i> --}}
                                 </p>
                             </a>
@@ -892,7 +903,7 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('tamplate/dist/js/pages/dashboard2.js')}}"></script>
 
-    @satck('scripts')
+    @stack('scripts')
 </body>
 
 </html>

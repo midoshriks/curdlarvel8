@@ -14,6 +14,7 @@
 
 @endpush
 
+
 @section('content')
 
     <div class="content-wrapper">
@@ -22,11 +23,11 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Dashboard Data Products</h1>
+                        <h1 class="m-0">Dashboard data employees</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Products</a></li>
+                            <li class="breadcrumb-item"><a href="#">employees</a></li>
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
                     </div><!-- /.col -->
@@ -34,33 +35,35 @@
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content-header -->
-            {{-- <h1 class="text-center mb-4">Data page Productsdata</h1> --}}
 
+        {{-- <h1 class="text-center mb-4">Data page</h1> --}}
         <div class="container">
 
-            <!-- defult message Error -->
+                <!-- defult message Error -->
+                {{--
+                    @if($message = Session::get('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{$message}}
+                    </div>
+                    @elseif($message = Session::get('delete'))
+                    <div class="alert alert-danger" role="alert">
+                        {{$message}}
+                    </div>
+                    @endif
+                --}}
+                <!-- defult message Error -->
 
-            {{-- @if ($message = Session::get('success'))
-                <div class="alert alert-success" role="alert">
-                    {{ $message }}
-                </div>
-            @elseif($message = Session::get('delete'))
-                <div class="alert alert-danger" role="alert">
-                    {{ $message }}
-                </div>
-            @endif --}}
-
-
-
-            <a href="/plusproduct" class="btn btn-success mb-5">plues product +</a>
+            <a href="/plusdata" class="btn btn-success mb-5">plus employee</a>
+            
             {{-- {{ Session::get('halaman_url') }} --}}
+
             <!-- search box -->
-            <form action="/productsdata" method="get" class="mb-3">
+            <form action="/datapage" method="get" class="mb-3">
                 <div class="row g-3 align-items-center">
 
                     <label for="inputPassword6" class="col-xform-label">search employee</label>
                     <div class="col-auto">
-                        <input type="search" name="search" class="form-control">
+                        <input type="search" name="search" class="form-control" >
                     </div>
 
                     <div class="col-auto">
@@ -70,11 +73,11 @@
                     </div>
 
                     <div class="col-auto">
-                        <a href="/exportpdf_product" class="btn btn-info">Export PDF</a>
+                        <a href="/exportpdf" class="btn btn-info">Export PDF</a>
                     </div>
 
                     <div class="col-auto">
-                        <a href="/exportexcel_products" class="btn btn-success">Export Excel</a>
+                        <a href="/exportexcel" class="btn btn-success">Export Excel</a>
                     </div>
 
                     <div class="col-auto">
@@ -91,18 +94,18 @@
             </form>
             <!-- search box -->
 
+
+
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form action="/importexcel_products" method="post" enctype="multipart/form-data">
-                            @csrf
+                        <form action="/importexcel" method="post" enctype="multipart/form-data">
+                        @csrf
                             <div class="modal-body">
                                 <div class="from-group">
                                     <input type="file" name="file" require>
@@ -118,8 +121,6 @@
             </div>
 
 
-
-
             <div class="row">
                 <table class="table">
                     <thead>
@@ -127,48 +128,53 @@
                             <th scope="col">#</th>
                             <th scope="col">img</th>
                             <th scope="col">name</th>
-                            <th scope="col">price</th>
-                            <th scope="col">Tax</th>
-                            <th scope="col">quantity</th>
+                            <th scope="col">gender</th>
+                            <th scope="col">phone</th>
                             <th scope="col">create ago</th>
                             <th scope="col">date</th>
-                            <th scope="col">quantity +</th>
                             <th scope="col">action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($productsdata as $K => $row)
-                            <tr>
-                                <th scope="row">{{ $K + 1 }}</th>
-                                <td>
-                                    <img src="{{ asset('fotoproducts/' . $row->foto) }}" alt="img" style="width: 40px;">
-                                </td>
-                                <td>{{ $row->name }}</td>
-                                <td>${{ $row->price }}</td>
-                                <td>${{ $row->tax }}</td>
-                                <td>{{ $row->quantity }} <i class="fas fa-sort-amount-up-alt" style="color: blue;"></i>
-                                </td>
-                                <td>{{ $row->created_at->diffForHumans() }}</td>
-                                <td>{{ $row->created_at->format('D M Y') }}</td>
-                                <td>
-                                    <a href="/add_quantity/{{ $row->id }}" class="btn btn-primary">Add +</a>
-                                </td>
-                                <td>
-                                    <a href="/editproduct/{{ $row->id }}" class="btn btn-info">Edit</a>
-                                    <!-- <a href="" class="btn btn-danger">Delete</a> -->
-                                    <a href="#" class="btn btn-danger delete" data-id="{{ $row->id }}"
-                                        data-name="{{ $row->name }}">Delete</a>
-                                </td>
-                            </tr>
+                        @foreach($data as $K => $row)
+                        <tr>
+                            <th scope="row">{{$K+1}}</th>
+                            <td>
+                                <img src="{{ asset('fotodatapage/'.$row->foto) }}" alt="img" style="width: 40px;">
+                            </td>
+                            <td>{{$row->name}}</td>
+                            <td>{{$row->gender}}</td>
+                            <td>{{$row->phone}}</td>
+                            <td>{{$row->created_at->diffForHumans()}}</td>
+                            <td>{{$row->created_at->format('D M Y')}}</td>
+                            <td>
+                                <a href="/editdata/{{ $row->id }}" class="btn btn-info">Edit</a>
+                                {{--<a href="/deleteemp/{{$row->id}}" class="btn btn-danger">Delete</a>--}}
+                                <a href="#" class="btn btn-danger delete" data-id="{{ $row->id }}" data-name="{{ $row->name }}">Delete</a>
+                            </td>
+
+
+                            <!-- <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger">Delete</button>
+                                        <button type="button" class="btn btn-info">Edit</button>
+                                    </td> -->
+                        </tr>
                         @endforeach
                     </tbody>
                 </table>
-                {{ $productsdata->links() }}
+                {{$data->links('pagination::bootstrap-4')}}
             </div>
         </div>
     </div>
 
+
+
 @endsection
+
 
 @push('scripts')
     <!-- Optional JavaScript; choose one of the two! -->
@@ -197,7 +203,7 @@
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    </body>
+    {{-- </body> --}}
 
     <script>
         // test
@@ -218,7 +224,7 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location = "/delete/" + datapageid + ""
+                        window.location = "/deleteemp/" + datapageid + ""
                         swal("Poof! Your imaginary file has been deleted!", {
                             icon: "success",
                         });
@@ -241,3 +247,5 @@
         @endif
     </script>
 @endpush
+
+

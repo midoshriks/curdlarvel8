@@ -25,6 +25,9 @@
                                 <label for="name" class="form-label">Name </label>
                                 <input type="text" name="name" value="{{$data->name}}" class="form-control" id="name" aria-describedby="emailHelp" placeholder="enter name">
                             </div>
+                            @error('name')
+                                <div class="alert alert-warning">{{ $message }}</div>
+                            @enderror
 
                             <label for="name" class="form-label">select gender</label>
                             <select class="form-select" name="gender" aria-label="Default select example">
@@ -38,12 +41,16 @@
                                 <label for="Phone" class="form-label">Phone</label>
                                 <input type="text" name="phone" value="{{$data->phone}}" class="form-control" id="exampleInputPassword1" placeholder="+012">
                             </div>
+                            @error('phone')
+                                <div class="alert alert-warning">{{ $message }}</div>
+                            @enderror
 
                             <div class="mb-3">
                                 <label for="foto" class="form-label">Select img</label>
                                 <input type="file"  name="foto" class="form-control">
                                 <img src="{{ asset('fotodatapage/'.$data->foto) }}" alt="img" style="width: 40px;">
                             </div>
+
 
 
                             <button type="submit" class="btn btn-primary">Submit</button>

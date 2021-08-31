@@ -6,6 +6,7 @@ use App\Exports\ProductsExport;
 use App\Imports\ProductsImport;
 use App\Models\Products;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 // use Barryvdh\DomPDF\PDF;
 use PDF;
 use Excel;
@@ -16,9 +17,15 @@ class ProductsController extends Controller
     public function index(Request $request){
         if($request->has('search')){
             $productsdata = Products::where('name','LIKE','%'. $request->search .'%')->paginate(5);
+
+            // Its to instaul in site
+            Session::put('halaman_url', request()->fullUrl());
         }else{
             $productsdata = Products::all();
             $productsdata = Products::orderby('id', 'desc')->paginate(5);
+
+            // Its to instaul in site
+            Session::put('halaman_url', request()->fullUrl());
         }
         // $productsdata = Products::all();
         // var_dump($productsdata->count('id');
@@ -37,11 +44,11 @@ class ProductsController extends Controller
             $t2 = $productsdata->price;
             $t3 = $t + $t2;
             $productsdata->tax = $t3 ;
-            // var_dump($t2);
-            // var_dump($t3);
-            // var_dump($productsdata->price);
-            // exit;
         }
+        // var_dump($t3);
+        // var_dump($t2);
+        // var_dump($productsdata->tax);
+        // exit;
         if($request->hasFile('foto')){
             $request->file('foto')->move('fotoproducts/',$request->file('foto')->getClientOriginalName());
             $productsdata->foto =$request->file('foto')->getClientOriginalName();
@@ -55,33 +62,49 @@ class ProductsController extends Controller
         return view('products.editproduct',compact('productsdata'));
     }
 
-    public function addproduct(Request $request, $id){
+    public function add_quantity(Request $request, $id){
         $productsdata = Products::find($id);
-        return view('products.addproduct',compact('productsdata'));
+        return view('products.add_quantity_products',compact('productsdata'));
     }
 
     public function updateproduct(Request $request, $id){
         $productsdata = Products::find($id);
-        $productsdata->name = $request->input('name');
+        $productsdata->name = $request->name;
+        $productsdata->quantity = $request->quantity;
+        $productsdata->price = $request->price;
 
         if($request->hasFile('foto')){
             $request->file('foto')->move('fotoproducts/',$request->file('foto')->getClientOriginalName());
             $productsdata->foto = $request->file('foto')->getClientOriginalName();
-            $productsdata->save($request->all());
-            // $productsdata->update();
+            // $productsdata->save($request->all());
         }
+        $productsdata->update();
         // var_dump($productsdata->foto);
         // exit;
-        // $productsdata->update($request->all());
+
+            // Its to instaul in site
+        if(Session::get('halaman_url')){
+            return Redirect(session('halaman_url'))->with('success','Data has been Update successfully');
+        }
+
         return redirect()->route('productsdata')->with('success','Data has been Update product successfully');
     }
 
-    public function uaddproduct(Request $request, $id){
-        $addproducts = Products::find($id);
+    public function add_quantity_products(Request $request, $id){
+        $add_quantity_products = Products::find($id);
         // $add = Products::find($id);
-        $addproducts->quantity = $request->input('quantity');
+        $add = $request->quantity;
+        $defult = $add_quantity_products->quantity;
+        $add_quantity = $add + $defult;
 
-        $addproducts->update($request->all());
+        $add_quantity_products->quantity = $add_quantity;
+
+        // var_dump($add_quantity);
+        // var_dump($addproducts->quantity);
+        // exit;
+
+        $add_quantity_products->update();
+
         return redirect()->route('productsdata')->with('success','Data has been Add quantity product successfully');
     }
 

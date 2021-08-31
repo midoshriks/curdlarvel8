@@ -2,7 +2,6 @@
 
 
 @section('content')
-
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -10,12 +9,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Dashboard v2</h1>
+                            <h1 class="m-0">Dashboard </h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Dashboard v2</li>
+                                <li class="breadcrumb-item active">Dashboard </li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -34,9 +33,17 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Count Employee</span>
-                                    <span class="info-box-number">
+                                    <span class="info-box-number text-sm-center">
                                         {{$countEmployee}}
                                         <small>Employees</small>
+                                    </span>
+                                    <span class="info-box-number">
+                                        {{$countfamale}}
+                                        <small>Famale</small>
+                                        <i class="fas fa-female mr-5"></i>
+                                        {{$countmale}}
+                                        <small>Mela</small>
+                                        <i class="fas fa-male"></i>
                                     </span>
                                 </div>
                                 <!-- /.info-box-content -->
@@ -44,6 +51,23 @@
                             <!-- /.info-box -->
                         </div>
                         <!-- /.col -->
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <div class="info-box mb-3">
+                                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Sales</span>
+                                    <span class="info-box-number">{{$countproducts}}</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+
+                        <!-- fix for small devices only -->
+                        <div class="clearfix hidden-md-up"></div>
+
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box mb-3">
                                 <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
@@ -58,22 +82,6 @@
                         </div>
                         <!-- /.col -->
 
-                        <!-- fix for small devices only -->
-                        <div class="clearfix hidden-md-up"></div>
-
-                        <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Sales</span>
-                                    <span class="info-box-number">760</span>
-                                </div>
-                                <!-- /.info-box-content -->
-                            </div>
-                            <!-- /.info-box -->
-                        </div>
-                        <!-- /.col -->
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box mb-3">
                                 <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
@@ -305,7 +313,7 @@
                                                 <!-- Message. Default to the left -->
                                                 <div class="direct-chat-msg">
                                                     <div class="direct-chat-infos clearfix">
-                                                        <span class="direct-chat-name float-left">Alexander Pierce</span>
+                                                        <span class="direct-chat-name float-left">Mido Shriks</span>
                                                         <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
                                                     </div>
                                                     <!-- /.direct-chat-infos -->
@@ -337,7 +345,7 @@
                                                 <!-- Message. Default to the left -->
                                                 <div class="direct-chat-msg">
                                                     <div class="direct-chat-infos clearfix">
-                                                        <span class="direct-chat-name float-left">Alexander Pierce</span>
+                                                        <span class="direct-chat-name float-left">Mido Shriks</span>
                                                         <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
                                                     </div>
                                                     <!-- /.direct-chat-infos -->
@@ -505,7 +513,7 @@
                                             <ul class="users-list clearfix">
                                                 <li>
                                                     <img src="{{ asset('tamplate/dist/img/user1-128x128.jpg') }}" alt="User Image">
-                                                    <a class="users-list-name" href="#">Alexander Pierce</a>
+                                                    <a class="users-list-name" href="#">Mido Shriks</a>
                                                     <span class="users-list-date">Today</span>
                                                 </li>
                                                 <li>
@@ -863,3 +871,75 @@
         <!-- /.content-wrapper
 
 @endsection
+
+@push('scripts')
+    <!-- Optional JavaScript; choose one of the two! -->
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+                        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+            </script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+                        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+            </script>
+        -->
+
+    <!-- Option cdn  code & sweetalert -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- Option cdn  toastr -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    {{-- </body> --}}
+
+    {{-- <script>
+        // test
+        // swal("Hello world!");
+
+        // is function delete row
+        $('.delete').click(function() {
+            var datapageid = $(this).attr('data-id');
+            var dataname = $(this).attr('data-name');
+            swal({
+
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover this imaginary file your " + dataname +
+                        "!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location = "/delete/" + datapageid + ""
+                        swal("Poof! Your imaginary file has been deleted!", {
+                            icon: "success",
+                        });
+                    } else {
+                        swal("Your imaginary file is safe!");
+                    }
+                });
+        });
+    </script> --}}
+
+    <script>
+        // Set a success toast, with a title
+        // toastr.success('Have fun storming the castle!', 'Miracle Max Says')
+        @if (Session::has('success'))
+            toastr.success(" {{ Session::get('success') }} ")
+        @endif
+
+        @if (Session::has('delete'))
+            toastr.warning(" {{ Session::get('delete') }} ")
+        @endif
+    </script>
+@endpush

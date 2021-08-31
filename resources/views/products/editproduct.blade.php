@@ -38,7 +38,8 @@
 
                             <div class="mb-3">
                                 <label for="foto" class="form-label">Select img products</label>
-                                <input type="file" name="foto" class="form-control">
+                                <input type="file" name="foto" class="form-control" >
+                                <img src="{{ asset('fotoproducts/' . $productsdata->foto) }}" alt="img" style="width: 40px;">
                             </div>
 
 

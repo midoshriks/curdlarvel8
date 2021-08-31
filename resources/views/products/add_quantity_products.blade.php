@@ -19,12 +19,12 @@
             <div class="col-8">
                 <div class="card">
                     <div class="card-body">
-                        <form action="/uaddproduct/{{$productsdata->id}}" method="POST" enctype="multipart/form-data">
+                        <form action="/add_quantity_products/{{$productsdata->id}}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="mb-3">
-                                <label for="quantity" class="form-label">quantity products</label>
-                                <input type="number" name="quantity" value="{{$productsdata->quantity}}" class="form-control" id="exampleInputPassword1" placeholder="plise enter quantity your product">
+                                <label for="quantity" class="form-label">Add quantity products</label>
+                                <input type="number" name="quantity"  class="form-control" id="exampleInputPassword1" placeholder="plise enter quantity your product">
                             </div>
 
                             <button type="submit" class="btn btn-primary">Submit</button>
